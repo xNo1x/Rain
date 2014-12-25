@@ -16,6 +16,7 @@ import com.philipp.rain.grahpics.Screen;
 import com.philipp.rain.input.Keyboard;
 import com.philipp.rain.level.Level;
 import com.philipp.rain.level.RandomLevel;
+import com.philipp.rain.level.SpawnLevel;
 
 public class Game extends Canvas implements Runnable {
 
@@ -44,8 +45,8 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(64, 64);
-		player = new Player(key);
+		level = new SpawnLevel("/textures/level.png");
+		player = new Player(30, 30, key);
 
 		addKeyListener(key);
 	}
@@ -87,7 +88,7 @@ public class Game extends Canvas implements Runnable {
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println(updates + "ups, " + frames + "fps");
+				// System.out.println(updates + "ups, " + frames + "fps");
 				frame.setTitle(title + " || " + updates + "ups, " + frames + "fps");
 				updates = 0;
 				frames = 0;
